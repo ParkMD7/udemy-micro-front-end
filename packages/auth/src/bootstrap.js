@@ -6,7 +6,7 @@ import App from './App';
 
 // mount fn to start up the app
 // attach microfrontend to passed in element and allow of memory navigation
-const mount = (element, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (element, { onNavigate, onAuthChange, defaultHistory, initialPath }) => {
   const history = defaultHistory || createMemoryHistory({
     initialEntries: [initialPath],
   });
@@ -15,7 +15,7 @@ const mount = (element, { onNavigate, defaultHistory, initialPath }) => {
     history.listen(onNavigate);
   }
 
-  ReactDOM.render(<App history={history} />, element);
+  ReactDOM.render(<App onAuthChange={onAuthChange} history={history} />, element);
 
   return {
     // anytime parent microfe navigates then call this fn to sync navigations

@@ -10,14 +10,18 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'au',
 })
 
-export default ({ history }) => {
+export default ({ history, onAuthChange }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
           <Switch>
-            <Route path="/auth/signin" component={Signin} />
-            <Route path="/auth/signup" component={Signup} />
+            <Route path="/auth/signin">
+              <Signin onAuthChange={onAuthChange} />
+            </Route>
+            <Route path="/auth/signup">
+              <Signup onAuthChange={onAuthChange} />
+            </Route>
           </Switch>
         </Router>
       </StylesProvider>
